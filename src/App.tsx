@@ -1,6 +1,6 @@
-import {GreetUser} from './GreetUser'
-import {Counter} from './Counter'
-
+import { Routes } from './routes/Routes'
+import {Navigation} from './components/navigation/Navigation'
+import './shared/global/Global.css'
 /*function App() {
   return (
     <div>
@@ -15,9 +15,11 @@ export default App*/
 
 export const App = () => {
   return (
-    <>
-      <GreetUser />
-      <Counter />
-    </>
+    
+    <Routes>
+      <Navigation />
+    </Routes>
+    
   )
 }
+
