@@ -1,6 +1,9 @@
 import { Routes } from './routes/Routes'
-import {Navigation} from './components/navigation/Navigation'
+import { Navigation } from './components/navigation/Navigation'
 import './shared/global/Global.css'
+import { UserProvider } from './shared/provider/UserProvider'
+
+
 /*function App() {
   return (
     <div>
@@ -15,11 +18,11 @@ export default App*/
 
 export const App = () => {
   return (
-    
-    <Routes>
-      <Navigation />
-    </Routes>
-    
+    <UserProvider>
+      <Routes>
+        <Navigation />
+      </Routes>
+    </UserProvider>
   )
 }
 

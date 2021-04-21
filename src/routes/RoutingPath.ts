@@ -4,14 +4,19 @@ const shopView = '/shop'
 const brandsView = '/brands'
 const accessoriesView = '/accessories'
 const newsView = '/news'
+const profileView = '/profile'
+const settingsView ='/settings'
 
-export default{
+// eslint-disable-next-line
+export default {
     signInView,
     homeView,
     shopView,
     accessoriesView,
     brandsView,
-    newsView
+    newsView,
+    profileView,
+    settingsView
 }
 
 //Skapa denna fil för att undvika att hårdkoda routens path i Routes.tsx
