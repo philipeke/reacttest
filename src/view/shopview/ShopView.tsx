@@ -3,10 +3,10 @@ import { useEffect, useState } from 'react' // Denna del Ã¤r viktig att kunna fÃ
 export const ShopView = () => {
     const [count, setCount] = useState(0)
 
-    useEffect(() => {
+    /*useEffect(() => {
         alert('hej')
         return () => { alert('test test') }
-    }, [count])
+    }, [count])*/
 
     return (
         <div>

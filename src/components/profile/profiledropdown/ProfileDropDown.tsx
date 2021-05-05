@@ -1,12 +1,12 @@
 import './ProfileDropDown.css'
-import {useContext} from 'react'
+import { useContext } from 'react'
 import { useHistory } from 'react-router-dom'
 import RoutingPath from '../../../routes/RoutingPath'
 import { UserContext } from '../../../shared/provider/UserProvider'
 import LocalStorage from '../../../shared/cache/LocalStorage'
 
 export const ProfileDropDown = () => {
-    const[authenticatedUser, setAuthenticatedUser] = useContext(UserContext)
+    const [authenticatedUser, setAuthenticatedUser] = useContext(UserContext)
     const history = useHistory()
 
     const logout = () => {
