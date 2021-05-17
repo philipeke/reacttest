@@ -2,7 +2,7 @@ import { Routes } from './routes/Routes'
 import { Navigation } from './components/navigation/Navigation'
 import './shared/global/Global.css'
 import { UserProvider } from './shared/provider/UserProvider'
-
+import { ItemsInCartProvider } from './shared/provider/ItemsInCartProvider'
 
 /*function App() {
   return (
@@ -18,11 +18,13 @@ export default App*/
 
 export const App = () => {
   return (
-    <UserProvider>
-      <Routes>
-        <Navigation />
-      </Routes>
-    </UserProvider>
+    <ItemsInCartProvider>
+			<UserProvider>
+				<Routes>
+					<Navigation />
+				</Routes>
+			</UserProvider>
+		</ItemsInCartProvider>
   )
 }
 

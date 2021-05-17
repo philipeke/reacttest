@@ -1,47 +1,48 @@
 import { useState, useEffect } from 'react'
-import PokemonAPIService from "../../shared/api/service/PokemonAPIService"
+import PokemonAPIservice from '../../shared/api/service/PokemonAPIService'
 import loadingImage from '../../shared/images/poke.gif'
+import { useDebounce } from '../../hooks/useDebounce'
+
 export const BrandsView = () => {
-    const [serverData, setServerData] = useState<any>()
-    const [search, setSearch] = useState<any>()
-    const [loading, setLoading] = useState<boolean>(true)
+	const [serverData, setServerData] = useState<any>()
+	const [search, setSearch] = useState<any>()
+	const [loading, setLoading] = useState<boolean>(true)
+	const debounceValue = useDebounce(search, 2000)
 
-    const fetchData = async () => {
-        try {
-            setLoading(true)
-            const { data } = await PokemonAPIService.searchPokemon(search)
-            setServerData(data)
-            setLoading(false)
-        } catch (error) {
-            console.log(alert('something went wrong'))
-        }
-    }
+	const fetchData = async () => {
+		try {
+			setLoading(true)
+			const { data } = await PokemonAPIservice.searchPokemon(search)
+			setServerData(data)
+			setLoading(false)
+		} catch (error) {
+			console.log('something went wrong!')
+		}
+	}
 
-    //? undefined och null check
-    const displayData = () => {
-        if (!loading) {
-            return (
+	const displayData = () => {
+		if (!loading) {
+			return (
+				<div>
+					<img src={serverData?.sprites?.front_default} alt={'Error..'} />
+					<h1>Name: {serverData?.name}</h1>
+					<h1>Height: {serverData?.height}</h1>
+					<h1>Weight: {serverData?.weight}</h1>
+				</div>
+			)
+		} else {
+			return <img src={loadingImage} alt={'Error..'} />
+		}
+	}
 
-                <div>
-                    <img src={serverData?.sprites?.front_default} alt={'Error..'} />
-                    <h1>Name: {serverData?.name}</h1>
-                    <h1>Height: {serverData?.height}</h1>
-                    <h1>weight: {serverData?.weight}</h1>
-                </div>
-            )
-        } else{
-        return <img src={loadingImage} alt={'Error.'} />
-        }
-    }
+	useEffect(() => {
+		fetchData()
+	}, [debounceValue])
 
-    useEffect(() => {
-        fetchData()
-    }, [search])
-
-    return (
-        <div>
-            <input placeholder='Search for character' onChange={event => setSearch(event.target.value)} />
-            {displayData()}
-        </div>
-    )
+	return (
+		<div>
+			<input placeholder="search for character" onChange={event => setSearch(event.target.value)} /> <br />
+			{displayData()}
+		</div>
+	)
 }
